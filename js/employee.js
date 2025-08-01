@@ -27,11 +27,20 @@ function updateStatus(taskId, button) {
     statusSpan.textContent = newStatus;
 
     // Send to server
-    await fetch(`/api/tasks/${taskId}/status`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ status: newStatus })
-    });
+const response = await fetch(`/api/tasks/${taskId}/status`, {
+  method: 'PATCH',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ status: newStatus })
+});
+
+if (!response.ok) {
+  console.error("Failed to update status:", await response.text());
+  alert("❌ Failed to update status.");
+} else {
+  console.log("✅ Status updated!");
+  location.reload();
+}
+
 
     document.body.removeChild(popup);
     location.reload(); // Optional: refresh to reflect changes
