@@ -1,0 +1,290 @@
+/* Ensure the body is not using flex */
+body {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+/* Main container for the manager screen */
+.dashboard-container {
+    max-width: 1200px;
+    margin: 130px 0 0 40px;
+    color: #000;
+}
+
+.dashboard-container h1 {
+    margin-bottom: 20px;
+    font-size: 26px;
+    font-weight: normal;
+}
+
+/* Add Task button */
+.add-task-btn {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    display: inline-block;
+}
+
+/* Tasks Table */
+.task-table {
+    width: calc(100% - 80px);
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    overflow-x: auto;
+    margin-bottom: 30px;
+    box-shadow: 15px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.task-header,
+.task-row {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    padding: 12px 10px;
+    align-items: center;
+    text-align: center;
+}
+
+.task-header {
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.task-row {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.task-row span {
+    padding: 5px;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+    padding: 5px;
+}
+
+.icon-btn:hover {
+    transform: scale(1.2);
+    filter: brightness(1.2);
+}
+
+/* Quote Box */
+.quote-box {
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    margin: 40px 40px 0 auto;
+    font-size: 14px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+#change-quote-btn {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+#change-quote-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Logout Button */
+.logout-btn {
+    margin: 180px 0 0 10px;
+    padding: 10px 20px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.add-task-btn:hover,
+.logout-btn:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+/* Add Task Popup */
+.add-task-popup,
+.edit-task-popup {
+    position: fixed;
+    top: 20%;
+    left: 35%;
+    background-color: #ffffffdd;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px #00000055;
+    z-index: 1000;
+    display: none;
+    width: 300px;
+}
+
+.add-task-form input,
+.add-task-form select,
+.edit-task-form input,
+.edit-task-form select {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* ===== Popup Styling (from employee.css) ===== */
+.status-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background:rgba(0, 0, 0, 0.4);
+  color:white;
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(38, 255, 0, 0.12);
+  z-index: 9999;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  animation: popupFade 0.3s ease;
+}
+
+.status-popup select {
+  padding: 8px 12px;
+  margin: 15px 0;
+  border-radius: 6px;
+  border: 1px solid black;
+  background-color: #313131;
+  color: white;
+  font-size: 14px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.status-popup select option {
+  background-color: rgba(0, 0, 0, 0.15);
+  color: white;
+}
+
+.status-popup button {
+  padding: 8px 15px;
+  margin: 5px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.status-popup button:first-of-type {
+  background-color: #007bff;
+  color: white;
+}
+
+.status-popup button:first-of-type:hover {
+  background-color: #007bff;
+}
+
+.status-popup button:last-of-type {
+  background-color: #dc3545;
+  color: white;
+}
+
+.status-popup button:last-of-type:hover {
+  background-color: #c82333;
+}
+
+/* === COMMENT POPUP (Styled like status popup) === */
+.comment-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  animation: popupFade 0.3s ease;
+  width: 350px;
+}
+
+.comment-popup h3 {
+  margin-bottom: 10px;
+}
+
+.comment-popup textarea {
+  width: 100%;
+  height: 80px;
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid black;
+  background-color: #313131;
+  color: white;
+  resize: none;
+}
+
+.comment-popup #recent-comments {
+  margin-bottom: 10px;
+  text-align: left;
+  font-size: 14px;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.comment-popup button {
+  padding: 8px 15px;
+  margin: 5px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.comment-popup button#submit-comment-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.comment-popup button#submit-comment-btn:hover {
+  background-color: #0056b3;
+}
+
+.comment-popup button#cancel-comment-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.comment-popup button#cancel-comment-btn:hover {
+  background-color: #c82333;
+}

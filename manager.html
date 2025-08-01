@@ -1,0 +1,125 @@
+<!-- manager.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="js/manager.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manager Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/manager.css" />
+</head>
+<body>
+  <!-- Logo -->
+  <div class="logo">
+    <img src="images/project_logo.png" alt="Logo" />
+  </div>
+
+  <!-- Dashboard Content -->
+  <div class="dashboard-container">
+    <h1>Welcome Marwan 👋</h1>
+
+    <!-- Add Task Button -->
+    <button class="add-task-btn">➕ Add new task</button>
+
+    <!-- Tasks Table -->
+    <div class="task-table">
+      <div class="task-header">
+        <span>Title</span>
+        <span>Description</span>
+        <span>Assigned To</span>
+        <span>Status</span>
+        <span>Edit</span>
+        <span>Delete</span>
+        <span>Change Status</span>
+        <span>Comment</span>
+      </div>
+    </div>
+
+    <!-- Quote Box -->
+    <div class="quote-box">
+      <p id="quote-text"><em>Loading quote...</em></p>
+      <small>This is a motivational quote fetched from an external API:<br> https://api.quotable.io/random</small>
+      <button id="change-quote-btn">Change Quote</button>
+    </div>
+
+    <!-- Logout Button -->
+    <button class="logout-btn" id="logout-btn">Log out</button>
+  </div>
+
+  <!-- Add Task Popup -->
+  <div class="add-task-popup" style="display:none;">
+    <form id="add-task-form" class="add-task-form">
+      <h3>New Task</h3>
+      <input type="text" name="title" placeholder="Title" required />
+      <input type="text" name="description" placeholder="Description" required />
+      <label for="assignedToSelect">Assign to:</label>
+      <select name="assignedTo" id="assignedToSelect" required>
+        <option value="">Loading...</option>
+      </select>
+      <select name="status">
+        <option value="To do">To do</option>
+        <option value="In progress">In progress</option>
+        <option value="Completed">Completed</option>
+      </select>
+      <div class="form-buttons">
+        <button type="submit">Add Task</button>
+        <button type="button" id="cancel-btn">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Edit Task Popup -->
+  <div class="edit-task-popup" style="display:none;">
+    <form id="edit-task-form" class="edit-task-form">
+      <h3>Edit Task</h3>
+      <input type="hidden" name="id" />
+      <input type="text" name="title" placeholder="Title" required />
+      <input type="text" name="description" placeholder="Description" required />
+      <label for="editAssignedToSelect">Assign to:</label>
+      <select name="assignedTo" id="editAssignedToSelect" required>
+        <option value="">Loading...</option>
+      </select>
+      <select name="status">
+        <option value="To do">To do</option>
+        <option value="In progress">In progress</option>
+        <option value="Completed">Completed</option>
+      </select>
+      <div class="form-buttons">
+        <button type="submit">Update Task</button>
+        <button type="button" id="cancel-edit-btn">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- 🔁 Change Status Popup -->
+  <div class="status-popup" style="display:none;">
+    <form id="status-form">
+      <h3>Change Task Status</h3>
+      <div class="status-flex-row">
+        <select id="status-select" required>
+          <option value="">Select status</option>
+          <option value="To do">To do</option>
+          <option value="In progress">In progress</option>
+          <option value="Completed">Completed</option>
+        </select>
+        <button type="submit">Update</button>
+        <button type="button" id="cancel-status-btn">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- 💬 Comment Popup -->
+  <div class="comment-popup" style="display: none;">
+    <form id="comment-form">
+      <h3>Comments</h3>
+      <div id="recent-comments"></div>
+      <textarea id="new-comment" placeholder="Write a comment..." required></textarea>
+      <div class="form-buttons">
+        <button id="submit-comment-btn" type="button">Submit</button>
+        <button id="cancel-comment-btn" type="button">Cancel</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
