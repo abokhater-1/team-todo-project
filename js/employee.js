@@ -9,7 +9,7 @@ function updateStatus(taskId, button) {
   popup.className = 'status-popup';
 
   const select = document.createElement('select');
-  ['To do', 'In progress', 'Done'].forEach(status => {
+  ['To do', 'In progress', 'Completed'].forEach(status => {
     const option = document.createElement('option');
     option.value = status;
     option.textContent = status;
