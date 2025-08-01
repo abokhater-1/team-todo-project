@@ -7,6 +7,7 @@ const User = require('./models/user');
 const taskRoutes = require('./routes/taskRoutes');
 const employeeRoutes = require('./routes/employeeRoutes');
 const authRoutes = require('./routes/authRoutes'); // ✅ Logout route
+const quoteRoutes = require('./routes/quote');
 
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
@@ -21,6 +22,7 @@ mongoose.connect(process.env.MONGO_URI)
 // ✅ Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use('/api', quoteRoutes);
 
 // ✅ Session middleware
 app.use(session({
