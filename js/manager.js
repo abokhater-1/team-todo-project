@@ -308,7 +308,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function loadQuote() {
     try {
-      const res = await fetch("https://zenquotes.io/api/random");
+      const res = await fetch("/api/quote");
       const data = await res.json();
       quoteText.textContent = `"${data[0].q}"`;
       quoteAuthor.textContent = `— ${data[0].a}`;
