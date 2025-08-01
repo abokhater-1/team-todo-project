@@ -21,9 +21,12 @@ function updateStatus(taskId, button) {
   confirmBtn.textContent = 'Update';
   confirmBtn.onclick = async () => {
     const newStatus = select.value;
-    const statusSpan = button.parentElement.querySelector('#task-status');
+
+    // Update UI immediately (fix: use generic <span> instead of ID)
+    const statusSpan = button.parentElement.querySelector('span');
     statusSpan.textContent = newStatus;
 
+    // Send to server
     await fetch(`/api/tasks/${taskId}/status`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
@@ -31,6 +34,7 @@ function updateStatus(taskId, button) {
     });
 
     document.body.removeChild(popup);
+    location.reload(); // Optional: refresh to reflect changes
   };
   popup.appendChild(confirmBtn);
 
@@ -44,7 +48,7 @@ function updateStatus(taskId, button) {
 
 // 📥 Load employee tasks
 document.addEventListener("DOMContentLoaded", () => {
-  const employeeName = "Wissam"; // Replace this with session-based dynamic name if available
+  const employeeName = "Wissam"; // Replace with dynamic session-based name if available
 
   fetch(`/api/tasks/employee/${employeeName}`)
     .then(res => res.json())
@@ -56,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="task-card">
             <p><strong>Task:</strong> ${task.title}</p>
             <p><strong>Description:</strong> ${task.description}</p>
-            <p><strong>Status:</strong> <span id="task-status">${task.status}</span></p>
+            <p><strong>Status:</strong> <span>${task.status}</span></p>
             <p><strong>Assigned by:</strong> ${task.assignedBy || "Manager"}</p>
             <button class="update-btn" onclick="updateStatus('${task._id}', this)">Update status</button>
           </div>
@@ -87,14 +91,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Initial load
   loadQuote();
 
-  // Manual refresh
   if (quoteButton) {
     quoteButton.addEventListener("click", loadQuote);
   }
 
-  // Auto-refresh every 15 minutes
   setInterval(loadQuote, 15 * 60 * 1000);
 });
